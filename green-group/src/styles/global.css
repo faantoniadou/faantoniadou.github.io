@@ -4,7 +4,7 @@
 
 :root {
   /* shadcn tokens: all oklch, no hsl() wrappers */
-  --background: oklch(0.9735 0.0379 195.88);
+  --background: oklch(0.98 0.0272 177.79);
   --foreground: oklch(0.208 0.042 265.755);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.148 0.004 228.8);
