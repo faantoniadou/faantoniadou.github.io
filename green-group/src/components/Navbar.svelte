@@ -16,13 +16,9 @@
   let open = $state(false);
   const isActive = (href: string) => currentPath.startsWith(href);
 </script>
-
 <header class="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur">
   <div class="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
-    <!-- Site name: the main place your personality shows -->
-    <a href="/" class="text-xl tracking-tight">Faidra Antoniadou</a>
-
-    <!-- Desktop nav -->
+    <img src="/assets/logo.png" alt="Logo" class="h-10 mr-2" />
     <nav class="hidden items-center gap-8 md:flex">
       {#each links as link}
         <a
