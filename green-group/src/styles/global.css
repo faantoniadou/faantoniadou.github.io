@@ -4,7 +4,7 @@
 
 :root {
   /* shadcn tokens: all oklch, no hsl() wrappers */
-  --background: oklch(1 0 0);
+  --background: oklch(0.9735 0.0379 195.88);
   --foreground: oklch(0.208 0.042 265.755);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.148 0.004 228.8);
@@ -19,7 +19,7 @@
   --accent: oklch(0.963 0.002 197.1);            /* shadcn: subtle hover bg */
   --accent-foreground: oklch(0.218 0.008 223.9);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.929 0.013 255.508);
+  --border: oklch(0.6106 0.0379 195.88 / 28.89%);
   --input: oklch(0.929 0.013 255.508);
   --ring: oklch(0.129 0.042 264.695);
   --radius: 0.625rem;
