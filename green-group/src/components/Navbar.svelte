@@ -28,11 +28,7 @@
         <a
           href={link.href}
           aria-current={isActive(link.href) ? "page" : undefined}
-          class={cn(
-            "text-sm text-muted-foreground transition-colors hover:text-foreground",
-            isActive(link.href) &&
-              "text-foreground underline decoration-2 underline-offset-8"
-          )}
+          class="link-underline text-sm text-muted-foreground hover:text-foreground aria-[current=page]:text-foreground"
         >
           {link.label}
         </a>

@@ -84,3 +84,18 @@
 
   img { max-width: 100%; height: auto; }
 }
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;     /* anchored bottom-left */
+  background-size: 0% 2px;         /* line hidden at rest */
+  padding-bottom: 4px;
+  transition: background-size 0.3s ease;
+  padding-bottom: 10px;
+}
+
+.link-underline:hover,
+.link-underline:focus-visible,
+.link-underline[aria-current="page"] {
+  background-size: 100% 2px;       /* line fully drawn */
+}
