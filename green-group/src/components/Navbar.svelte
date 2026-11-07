@@ -7,7 +7,7 @@
   let { currentPath }: { currentPath: string } = $props();
 
   const links = [
-    { href: "/work", label: "Professional" },
+    { href: "/experience", label: "Experience" },
     // { href: "/visual", label: "Visual" },
     // { href: "/personal", label: "Personal" },
     // { href: "/culture", label: "Cultural" },
