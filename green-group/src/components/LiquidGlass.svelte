@@ -11,11 +11,13 @@ let {
   frost = 0.4,
   blur = 6,          // new: px of blur applied to whatever is behind the glass
   tint = 0.5,
+  fallbackTint = 0.35,
   class: className = "",
   children,
 }: {
   radius?: number; bevelDepth?: number; scale?: number; aberration?: number;
   frost?: number; blur?: number; tint?: number; class?: string; children?: Snippet;
+  tint?: number; fallbackTint?: number;
 } = $props();
 
   let root: HTMLDivElement;
@@ -80,15 +82,16 @@ let {
 <div
   bind:this={root}
   class={cn(
-    "relative overflow-hidden",
-    mode === "simple" && "bg-white/70",
-    mode === "opaque" && "bg-background",
-    className
-  )}
-  style:border-radius="{radius}px"
-  style:background-color={mode === "pending" ? `rgb(255 255 255 / ${tint})` : undefined}
-  style:backdrop-filter={backdrop}
-  style:-webkit-backdrop-filter={backdrop}
+      "relative overflow-hidden",
+      mode === "opaque" && "bg-background",
+      className
+    )}
+    style:border-radius="{radius}px"
+    style:background-color={mode === "opaque"
+      ? undefined
+      : `rgb(255 255 255 / ${mode === "simple" ? fallbackTint : tint})`}
+    style:backdrop-filter={backdrop}
+    style:-webkit-backdrop-filter={backdrop}
 >
   {#if filter}
     {#key filter.id}

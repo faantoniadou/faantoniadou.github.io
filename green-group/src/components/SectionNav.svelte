@@ -49,6 +49,7 @@
     aberration={3}
     frost={0.2}
     tint={0.5}
+    fallbackTint={0.3}
     blur={3}
     scale={30}
     bevelDepth={100}
