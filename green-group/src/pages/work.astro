@@ -1,5 +1,7 @@
 ---
 import Base from "../pages/../layouts/Base.astro";
+import { Badge } from "$lib/components/ui/badge";
+
 import { getCollection } from "astro:content";
 
 // const projects = await getCollection("work");
@@ -26,7 +28,7 @@ const experience = [
           {
             lead: "Built AI agent skills that keep the UI faithful to the design system.",
             detail: "One encodes Cisco's internal component library; the other checks rendered UI automatically. It doubled frontend output, and IT leadership called the demo “setting a great example for the entire IT organisation.”",
-						tags: ["AI agents", "Design systems", "Playwright MCP", "Chrome DevTools"],
+						tags: ["AI agents", "Frontend Development", "MCP", "Testing"],
           },
           {
             lead: "Made the hybrid-work platform faster for everyone using it.",
@@ -236,8 +238,10 @@ const earlier = [
 											{p.tags && (
 												<ul class="mt-3 flex flex-wrap gap-2" aria-label="Skills and tools">
 													{p.tags.map((tag) => (
-														<li class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
-															{tag}
+														<li>
+															<Badge variant="outline" class="tag font-normal text-muted-foreground transition-colors duration-300 group-hover/point:border-link group-hover/point:text-foreground">
+																{tag}
+															</Badge>
 														</li>
 													))}
 												</ul>
