@@ -46,13 +46,13 @@
 
 <nav aria-label="Page sections">
   <LiquidGlass
-    aberration={3}
+    aberration={8}
     frost={0.2}
     brightness={1.15}
     tint={0.8}
     fallbackTint={0.4}
-    blur={3}
-    scale={50}
+    blur={2}
+    scale={30}
     bevelDepth={20}
     class="shadow-[0_1px_6px_rgb(0_0_0/0.05),inset_0_1px_0_rgb(255_255_255/0.4)]"
   >
