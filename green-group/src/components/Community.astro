@@ -1,0 +1,60 @@
+---
+const community = [
+  {
+    role: "Outreach Team Member, Feltham",
+    org: "Cisco",
+    dates: "Aug 2025 – Present",
+    points: [
+      "Speak on panels and run a workshop for university and school students to understand how to get into tech, and what it's like to work in the industry.",
+      "Gave constructive feedback and career advice in two speed-interviewing sessions for high school students, helping them prepare for their first interviews.",
+    ],
+  },
+  {
+    role: "Charity Lead",   // confirm the wording you'd use for your role
+    org: "Cisco | Oxfordshire Mind",
+    dates: "Jan 2026 - Nov 2026",
+    points: [
+      "Led a year-long campaign that raised just short of £7,000, persuading 10 colleagues to run a half marathon together.",
+      "Acted as the link between our team and the charity: advised on how best to tell their story, volunteered with them, and hosted them at our office for a lunch and learn that boosted donations.",
+      "Promoted the campaign through company channels, newsletter articles and org-wide meeting announcements, and booked a photographer for race day to share the results afterwards.",
+    ],
+  },	
+  {
+    role: "Physics Outreach Team, Senior Member",
+    org: "University of Edinburgh",
+    dates: "Sep 2018 – May 2022",
+    points: [
+      "Mentored teams to design and deliver workshops in underprivileged schools, working with the Science and Technology Facilities Council.",
+      "Helped develop content for the Online Sutton Trust Summer School 2020 and produced an introduction video for its Physics course, later used by the School of Physics and Astronomy for promotion.",
+      "Attained the Edinburgh Award for self-development.",
+    ],
+  },
+];
+---
+<section id="community" class="mt-24 scroll-mt-24">
+    <h2 class="font-display text-3xl">Community</h2>
+    <p class="mt-3 max-w-prose text-muted-foreground">
+      Time well spent, supporting the community and helping others to learn and grow.
+    </p>
+  
+    <ol class="mt-10 space-y-14">
+      {community.map((item) => (
+        <li class="scroll-reveal relative pb-12">
+  
+          <div>
+            <p class="text-sm text-muted-foreground">{item.dates}</p>
+            <h3 class="font-display text-2xl leading-snug">{item.role}</h3>
+            <p class="text-muted-foreground">{item.org}</p>
+  
+            <ul class="mt-4 space-y-3">
+              {item.points.map((point) => (
+                <li class="relative max-w-prose text-light pl-8 before:absolute before:left-0 before:top-[0.8em] before:h-px before:w-4 before:bg-link">
+                  <p class="font-display text-lg leading-snug">{point}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>

@@ -1,0 +1,34 @@
+---
+const education = [
+  {
+    degree: "MSc Computer Science",
+    school: "UCL",
+    dates: "2022-2023",
+    note: "Distinction, IBM Quantum Computing Project",
+  },
+  {
+    degree: "BSc (Hons) Computational Physics",
+    school: "University of Edinburgh",
+    dates: "2018-2022",
+    note: "First Class Honours, Margaret Campbell Scott Scholarship",
+  },
+];
+---
+<section id="education" class="mt-24 scroll-mt-24">
+    <h2 class="font-display text-3xl">Education</h2>
+  
+    <ol class="mt-10 space-y-4">
+      {education.map((item) => (
+        <li class="scroll-reveal relative pb-12">
+  
+          <div>
+            <p class="text-sm text-muted-foreground">{item.dates}</p>
+            <h3 class="font-display text-2xl leading-snug">{item.school}</h3>
+            <p class="text-muted-foreground">{item.degree}</p>
+            <p class="font-display text-lg leading-snug">{item.note}</p>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+  
