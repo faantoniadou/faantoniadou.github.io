@@ -14,7 +14,7 @@ const highlights = [
   {
     stat: "2×",
     label: "frontend output",
-    detail: "Built two AI agent skills: one encoding Cisco's internal component library, one automatically checking rendered UI. IT leadership called it “setting a great example for the entire IT organization.”",
+    detail: "Built two AI agent skills: one encoding Cisco's internal component library, one automatically checking rendered UI. IT leadership called it “setting a great example for the entire IT organisation.”",
     tags: ["AI agents", "Playwright MCP", "Design systems"],
   },
   {
@@ -41,28 +41,38 @@ const experience = [
   {
     role: "Software Engineer",
     company: "Cisco",
-    dates: "2025 – Present", // replace with your real dates
-    stats: [
-      { value: "2×", label: "frontend output" },
-      { value: "92%", label: "fewer slow queries" },
-      { value: "60%", label: "faster worst-case loads" },
-    ],
-    points: [
+    dates: "2025 – Present", // your real dates
+    themes: [
       {
-        lead: "Leading discovery for an automation.",
-        detail: "Running user interviews and analysing usage data to understand the problem before deciding what to build.",
+        label: "Understanding people",
+        points: [
+          {
+            lead: "Leading discovery for an internal automation.",
+            detail: "Interviewing the people who do this work today and analysing usage data, so we understand the problem before deciding what to build.",
+          },
+        ],
       },
       {
-        lead: "Doubled frontend output without losing design-system fidelity.",
-        detail: "Built two AI agent skills: one encoding Cisco's internal component library, the other checking rendered UI with Chrome DevTools and Playwright MCP. IT leadership called it “setting a great example for the entire IT organisation.”",
+        label: "Bridging design and engineering",
+        points: [
+          {
+            lead: "Built AI agent skills that keep the UI faithful to the design system.",
+            detail: "One encodes Cisco's internal component library; the other checks rendered UI with Chrome DevTools and Playwright MCP. It doubled frontend output, and IT leadership called the demo “setting a great example for the entire IT organisation.”",
+          },
+          {
+            lead: "Made the hybrid-work platform faster for everyone using it.",
+            detail: "Traced slow loads to high-latency MongoDB aggregations and shipped the most efficient fix, taking worst-case load times from 6s to 2s.",
+          },
+        ],
       },
       {
-        lead: "Made the hybrid-work platform 60% faster in the worst case.",
-        detail: "Traced high-latency MongoDB aggregations and shipped the most efficient fix, cutting slow queries ~92% and load times from 6s to 2s.",
-      },
-      {
-        lead: "Helped onboard the next generation of engineers.",
-        detail: "Supported two early-careers hiring cycles through CV screening, first-round interviews and onboarding planning; recognised for sincerity, proactiveness and engagement.",
+        label: "Supporting people",
+        points: [
+          {
+            lead: "Helped welcome the next generation of engineers.",
+            detail: "Supported two early-careers hiring cycles through CV screening and first-round interviews, and was recognised for sincerity, proactiveness and engagement.",
+          },
+        ],
       },
     ],
   },
@@ -106,25 +116,24 @@ const experience = [
 					<h3 class="font-display text-3xl">{job.role}</h3>
 					<p class="text-lg text-muted-foreground">{job.company}</p>
 
-					<!-- PART B: stat callouts -->
-					<dl class="mt-8 grid grid-cols-2 gap-6 md:grid-cols-4">
-						{job.stats.map((s) => (
+					<div class="mt-10 space-y-12">
+						{job.themes.map((theme) => (
 							<div>
-								<dt class="font-display text-5xl leading-none text-link">{s.value}</dt>
-								<dd class="mt-2 text-sm text-muted-foreground">{s.label}</dd>
+								<p class="font-display text-sm uppercase tracking-widest text-link">{theme.label}</p>
+
+								<ul class="mt-4 space-y-6">
+									{theme.points.map((p) => (
+										<li class="group relative pl-8 before:absolute before:left-0 before:top-[0.8em] before:h-px before:w-4 before:bg-link before:transition-all before:duration-300 group-hover:before:w-6">
+											<p class="font-display text-xl leading-snug">{p.lead}</p>
+											<p class="mt-1 max-w-prose text-muted-foreground">{p.detail}</p>
+										</li>
+									))}
+								</ul>
 							</div>
 						))}
-					</dl>
+					</div>
 
-					<!-- PART C: bullets -->
-					<ul class="mt-12 space-y-8">
-						{job.points.map((p) => (
-							<li class="group relative pl-8 before:absolute before:left-0 before:top-[0.8em] before:h-px before:w-4 before:bg-link before:transition-all before:duration-300 group-hover:before:w-6">
-								<p class="font-display text-xl leading-snug">{p.lead}</p>
-								<p class="mt-1 max-w-prose text-muted-foreground">{p.detail}</p>
-							</li>
-						))}
-					</ul>
+					<p class="mt-12 max-w-prose text-sm text-muted-foreground">{job.also}</p>
 				</li>
 			))}
 		</ol>
