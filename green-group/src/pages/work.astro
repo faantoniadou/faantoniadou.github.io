@@ -16,6 +16,7 @@ const experience = [
           {
             lead: "Leading discovery for an internal automation.",
             detail: "Interviewing the people who do this work today and analysing usage data, so we understand the problem before deciding what to build.",
+						tags: ["User interviews", "Data analysis", "Qualitative research"],
           },
         ],
       },
@@ -24,11 +25,13 @@ const experience = [
         points: [
           {
             lead: "Built AI agent skills that keep the UI faithful to the design system.",
-            detail: "One encodes Cisco's internal component library; the other checks rendered UI with Chrome DevTools and Playwright MCP. It doubled frontend output, and IT leadership called the demo “setting a great example for the entire IT organisation.”",
+            detail: "One encodes Cisco's internal component library; the other checks rendered UI automatically. It doubled frontend output, and IT leadership called the demo “setting a great example for the entire IT organisation.”",
+						tags: ["AI agents", "Design systems", "Playwright MCP", "Chrome DevTools"],
           },
           {
             lead: "Made the hybrid-work platform faster for everyone using it.",
-            detail: "Traced slow loads to high-latency MongoDB aggregations and shipped the most efficient fix, taking worst-case load times from 6s to 2s.",
+            detail: "Traced the slowdown to the source and shipped the most efficient fix, taking worst-case load times from 6s to 2s.",
+						tags: ["MongoDB", "Performance", "Go"],
           },
         ],
       },
@@ -53,7 +56,8 @@ const experience = [
 				points: [
 					{
 						lead: "Made quality control on the production line far more reliable.",
-						detail: "Improved machine-vision accuracy from ~70% to ~99% by separating image preprocessing from text recognition (OCR) so each part could be tested and improved on its own, and by enhancing the image pipelines.",
+						detail: "Improved machine-vision accuracy from ~70% to ~99% by isolating image preprocessing from text recognition so each functionality could be tested and improved independently.",
+						tags: [".NET C#", "OCR", "Machine vision"],
 					},
 					{
 						lead: "Let customers adjust laser power from the front end.",
@@ -61,7 +65,8 @@ const experience = [
 					},
 					{
 						lead: "Automated secure releases.",
-						detail: "Designed, built and debugged CI/CD pipelines in Azure DevOps (YAML and NUKE) that automated encryption, signing and publishing with CodeMeter and Wibu-Systems.",
+						detail: "Designed, built and debugged CI/CD pipelines that automated encryption, signing and publishing.",
+						tags: ["Azure DevOps", "YAML", "NUKE", "CodeMeter"],
 					},
 				],
 			},
@@ -217,19 +222,28 @@ const earlier = [
 					<span class="absolute -left-8 top-2 h-3 w-3 -translate-x-1/2 rounded-full bg-link md:-left-12"></span>
 
 					<p class="text-sm text-muted-foreground">{job.dates}</p>
-					<h3 class="font-display text-3xl">{job.role}</h3>
-					<p class="text-lg text-muted-foreground">{job.company}</p>
+					<h3 class="font-display text-2xl">{job.role}</h3>
+					<p class="text-md text-muted-foreground">{job.company}</p>
 
 					<div class="mt-10 space-y-12">
 						{job.themes.map((theme) => (
 							<div>
-								<p class="font-display text-sm uppercase tracking-widest text-link">{theme.label}</p>
+								<p class="font-display text-xs uppercase tracking-widest text-link">{theme.label}</p>
 
 								<ul class="mt-4 space-y-6">
 									{theme.points.map((p) => (
 										<li class="group relative pl-8 before:absolute before:left-0 before:top-[0.8em] before:h-px before:w-4 before:bg-link before:transition-all before:duration-300 group-hover:before:w-6">
-											<p class="font-display text-xl leading-snug">{p.lead}</p>
+											<p class="font-display text-lg leading-snug">{p.lead}</p>
 											<p class="mt-1 max-w-prose text-muted-foreground">{p.detail}</p>
+											{p.tags && (
+												<ul class="mt-3 flex flex-wrap gap-2" aria-label="Skills and tools">
+													{p.tags.map((tag) => (
+														<li class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground">
+															{tag}
+														</li>
+													))}
+												</ul>
+											)}
 										</li>
 									))}
 								</ul>
