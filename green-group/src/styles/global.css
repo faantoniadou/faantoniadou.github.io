@@ -2,6 +2,8 @@
 @import "tw-animate-css";
 @import "shadcn-svelte/tailwind.css";
 
+@plugin "@tailwindcss/typography";
+
 :root {
   /* shadcn tokens: all oklch, no hsl() wrappers */
   --background: oklch(0.9882 0.0184 150.35);
