@@ -8,8 +8,8 @@
 
   const links = [
     { href: "/work", label: "Professional" },
-    { href: "/visual", label: "Visual" },
-    { href: "/personal", label: "Personal" },
+    // { href: "/visual", label: "Visual" },
+    // { href: "/personal", label: "Personal" },
     // { href: "/culture", label: "Cultural" },
   ];
 
