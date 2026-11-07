@@ -281,10 +281,10 @@ const earlier = [
 	
 		<ol class="mt-10 space-y-14">
 			{community.map((item) => (
-				<li class="scroll-reveal grid gap-2 md:grid-cols-[10rem_1fr] md:gap-10">
-					<p class="text-sm text-muted-foreground">{item.dates}</p>
+				<li class="scroll-reveal relative pb-12">
 	
 					<div>
+					<p class="text-sm text-muted-foreground">{item.dates}</p>
 						<h3 class="font-display text-2xl leading-snug">{item.role}</h3>
 						<p class="text-muted-foreground">{item.org}</p>
 	
