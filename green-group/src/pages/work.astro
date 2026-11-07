@@ -140,7 +140,18 @@ const experience = [
 	},
 ];
 
-const outreach = [
+const community = [
+	{
+		role: "Fundraising Lead",   // confirm the wording you'd use for your role
+		org: "Cisco | Oxfordshire Mind",
+		dates: "Jan 2026 - Nov 2026",
+		points: [
+			"Led a year-long campaign that raised just short of £7,000, persuading 10 colleagues to run a half marathon together.",
+			"Acted as the link between our team and the charity: advised on how best to tell their story, volunteered with them, and hosted them at our office for a lunch and learn that boosted donations.",
+			"Ran a fundraising stall with a pay-to-play game and a raffle, raising £200.",
+			"Promoted the campaign through company channels, newsletter articles and org-wide meeting announcements, and booked a photographer for race day to share the results afterwards.",
+		],
+	},	
 	{
 		role: "Outreach Team Member, Feltham",
 		org: "Cisco",
@@ -177,6 +188,7 @@ const earlier = [
   <nav class="reveal mt-6 flex flex-wrap gap-6 text-muted-foreground" style="--i:1">
     <a href="#case-studies" class="link-underline">Case studies</a>
     <a href="#experience" class="link-underline">Experience</a>
+		<a href="#community" class="link-underline">Community</a>
     <a href="/cv.pdf" download class="link-underline">Download CV</a>
   </nav>
 
@@ -244,14 +256,14 @@ const earlier = [
 				</details>
 		</ol>
 	</section>
-	<section id="outreach" class="mt-24 scroll-mt-24">
-		<h2 class="font-display text-3xl">Outreach</h2>
+	<section id="community" class="mt-24 scroll-mt-24">
+		<h2 class="font-display text-3xl">Community</h2>
 		<p class="mt-3 max-w-prose text-muted-foreground">
-			I've been teaching and mentoring young people since university.
+			Time well spent, supporting the community and helping others to learn and grow.
 		</p>
 	
 		<ol class="mt-10 space-y-14">
-			{outreach.map((item) => (
+			{community.map((item) => (
 				<li class="scroll-reveal grid gap-2 md:grid-cols-[10rem_1fr] md:gap-10">
 					<p class="text-sm text-muted-foreground">{item.dates}</p>
 	
