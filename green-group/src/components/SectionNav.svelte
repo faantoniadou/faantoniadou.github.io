@@ -52,7 +52,7 @@
     tint={0.8}
     fallbackTint={0.4}
     blur={3}
-    scale={30}
+    scale={50}
     bevelDepth={20}
     class="shadow-[0_1px_6px_rgb(0_0_0/0.05),inset_0_1px_0_rgb(255_255_255/0.4)]"
   >
