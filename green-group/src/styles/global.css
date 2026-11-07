@@ -25,7 +25,7 @@
   --radius: 0.625rem;
 
   /* YOUR accent, for links and highlights. Change this one to change the site. */
-  --link: oklch(0.3866 0.0661 226.05);
+  --link: oklch(0.43 0.0713 166.24);
 }
 
 @theme inline {
