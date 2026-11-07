@@ -1,6 +1,6 @@
 ---
 import WorkExperience from "./WorkExperience.astro";
-import EarlyExperience from "./EarlyExperience.astro";
+import EarlyExperience from "./EarlyExperience.svelte";
 ---
 <section id="experience" class="mt-10 scroll-mt-24">
   <h2 class="font-display text-3xl">Experience</h2>
@@ -8,6 +8,6 @@ import EarlyExperience from "./EarlyExperience.astro";
   <!-- PART A: timeline -->
   <ol class="mt-10 border-l border-border pl-8 md:pl-12">
     <WorkExperience />
-    <EarlyExperience />
+    <EarlyExperience client:visible />
   </ol>
 </section>
