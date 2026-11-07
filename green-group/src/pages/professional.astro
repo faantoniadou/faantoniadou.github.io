@@ -1,7 +1,7 @@
 ---
 import Base from "../pages/../layouts/Base.astro";
 import CVButton from "../components/CVButton.astro";
-import Experience from "../components/Experience.astro";
+import Professional from "../components/Professional.astro";
 import Community from "../components/Community.astro";
 import Education from "../components/Education.astro";
 import SectionNav from "../components/SectionNav.svelte";
@@ -9,9 +9,9 @@ import SectionNav from "../components/SectionNav.svelte";
 import { getCollection } from "astro:content";
 ---
 
-<Base title="Experience | Faidra Antoniadou">
+<Base title="Professional | Faidra Antoniadou">
 	<header class="flex flex-col gap-5">
-		<h1 class="reveal font-display text-5xl mb-12" style="--i:0">Experience</h1>
+		<h1 class="reveal font-display text-5xl mb-12" style="--i:0">Professional</h1>
 		<div class="reveal" style="--i:2">
 			<CVButton class="justify-center" />
 		</div>
@@ -43,7 +43,7 @@ import { getCollection } from "astro:content";
     <!-- </ul> -->
   <!-- </section> -->
 
-  <Experience />
+  <Professional />
 	<Community />
 	<Education />
 </Base>
