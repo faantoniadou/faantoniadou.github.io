@@ -3,22 +3,35 @@
   import { cn } from "$lib/utils";
   import { makeDisplacementUrl, buildFilterSvg } from "$lib/liquid-glass";
 
-let {
-  radius = 999,
-  bevelDepth = 10,
-  scale = 28,
-  aberration = 2,
-  frost = 0.4,
-  blur = 6,          // new: px of blur applied to whatever is behind the glass
-  tint = 0.5,
-  fallbackTint = 0.35,
-  class: className = "",
-  children,
-}: {
-  radius?: number; bevelDepth?: number; scale?: number; aberration?: number;
-  frost?: number; blur?: number; tint?: number; class?: string; children?: Snippet;
-  tint?: number; fallbackTint?: number;
-} = $props();
+  let {
+    radius = 999,
+    bevelDepth = 10,
+    scale = 28,
+    aberration = 2,
+    frost = 0.4,
+    blur = 6,
+    tint = 0.5,
+    fallbackTint = 0.35,
+    tintColor="color-mix(in oklab, var(--background) 96%, white)",
+    saturate = 1,
+    brightness = 1,
+    class: className = "",
+    children,
+  }: {
+    radius?: number;
+    bevelDepth?: number;
+    scale?: number;
+    aberration?: number;
+    frost?: number;
+    blur?: number;
+    tint?: number;
+    fallbackTint?: number;
+    tintColor?: string;
+    saturate?: number;
+    brightness?: number;
+    class?: string;
+    children?: Snippet;
+  } = $props();
 
   let root: HTMLDivElement;
   let mode = $state<"pending" | "simple" | "opaque">("pending");
@@ -40,7 +53,10 @@ let {
     if (blobUrl) URL.revokeObjectURL(blobUrl);
     blobUrl = mapUrl;
     const id = `lg-${uid}-${w}x${h}-${Date.now().toString(36)}`; // new id: browsers cache by id
-    filter = { id, svg: buildFilterSvg({ id, mapUrl, width: w, height: h, scale, aberration, frost }) };
+    filter = {
+      id,
+      svg: buildFilterSvg({ id, mapUrl, width: w, height: h, scale, aberration, frost }),
+    };
   }
 
   onMount(() => {
@@ -72,26 +88,26 @@ let {
     mode === "opaque"
       ? "none"
       : mode === "simple"
-        ? `blur(${blur * 2}px) saturate(1.4)`
+        ? `blur(${blur * 2}px) saturate(${saturate})`
         : filter
-          ? `url(#${filter.id}) blur(${blur}px) saturate(1.85) brightness(0.82)`
-          : `blur(${blur * 2}px) saturate(1.6) brightness(1.04)`
+          ? `url(#${filter.id}) blur(${blur}px) saturate(${saturate}) brightness(${brightness})`
+          : `blur(${blur * 2}px) saturate(${saturate}) brightness(${brightness})`
+  );
+
+  const bg = $derived(
+    mode === "opaque"
+      ? undefined
+      : `color-mix(in oklab, ${tintColor} ${(mode === "simple" ? fallbackTint : tint) * 100}%, transparent)`
   );
 </script>
 
 <div
   bind:this={root}
-  class={cn(
-      "relative overflow-hidden",
-      mode === "opaque" && "bg-background",
-      className
-    )}
-    style:border-radius="{radius}px"
-    style:background-color={mode === "opaque"
-      ? undefined
-      : `rgb(255 255 255 / ${mode === "simple" ? fallbackTint : tint})`}
-    style:backdrop-filter={backdrop}
-    style:-webkit-backdrop-filter={backdrop}
+  class={cn("relative overflow-hidden", mode === "opaque" && "bg-background", className)}
+  style:border-radius="{radius}px"
+  style:background-color={bg}
+  style:backdrop-filter={backdrop}
+  style:-webkit-backdrop-filter={backdrop}
 >
   {#if filter}
     {#key filter.id}

@@ -48,12 +48,13 @@
   <LiquidGlass
     aberration={3}
     frost={0.2}
-    tint={0.5}
-    fallbackTint={0.3}
+    brightness={1.15}
+    tint={0.8}
+    fallbackTint={0.4}
     blur={3}
     scale={30}
     bevelDepth={20}
-    class="shadow-[0_1px_9px_rgb(0_0_0/0.10),0_0_0_1px_rgb(0_0_0/0.04),inset_0_1px_0_rgb(255_255_255/0.3)]"
+    class="shadow-[0_1px_6px_rgb(0_0_0/0.05),inset_0_1px_0_rgb(255_255_255/0.4)]"
   >
     <div class="relative flex p-1">
       <span
