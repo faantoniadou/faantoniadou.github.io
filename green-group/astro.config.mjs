@@ -12,7 +12,7 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://example.com',
+  site: 'https://faantoniadou.github.io',
   integrations: [mdx(), sitemap(), svelte(), icon()],
 
   fonts: [
