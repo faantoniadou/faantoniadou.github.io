@@ -1,0 +1,195 @@
+---
+import { Badge } from "$lib/components/ui/badge";
+
+const experience = [
+  {
+    role: "Software Engineer",
+    company: "Cisco",
+    dates: "Aug 2025 – Present", // your real dates
+    themes: [
+      {
+        label: "Understanding people",
+        points: [
+          {
+            lead: "Leading discovery for an internal automation.",
+            detail: "Interviewing the people who do this work today and analysing usage data, so we understand the problem before deciding what to build.",
+            tags: ["User interviews", "Data analysis", "Qualitative research"],
+          },
+        ],
+      },
+      {
+        label: "Bridging design and engineering",
+        points: [
+          {
+            lead: "Built AI agent skills that keep the UI faithful to the design system.",
+            detail: "One encodes Cisco's internal component library; the other checks rendered UI automatically. It doubled frontend output, and IT leadership called the demo “setting a great example for the entire IT organisation.”",
+            tags: ["AI agents", "Frontend Development", "MCP", "Testing"],
+          },
+          {
+            lead: "Made the hybrid-work platform faster for everyone using it.",
+            detail: "Traced the slowdown to the source and shipped the most efficient fix, taking worst-case load times from 6s to 2s.",
+            tags: ["MongoDB", "Performance", "Go"],
+          },
+        ],
+      },
+      {
+        label: "Supporting people",
+        points: [
+          {
+            lead: "Helped welcome the next generation of engineers.",
+            detail: "Supported two early-careers hiring cycles through CV screening and first-round interviews, and was recognised for sincerity, proactiveness and engagement.",
+            tags: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    role: "Software Engineer",
+    company: "Opsydia",
+    dates: "Dec 2024 – Jul 2025",
+    themes: [
+      {
+        label: "Building reliable systems",
+        points: [
+          {
+            lead: "Made quality control on the production line far more reliable.",
+            detail: "Improved machine-vision accuracy from ~70% to ~99% by isolating image preprocessing from text recognition so each functionality could be tested and improved independently.",
+            tags: [".NET C#", "OCR", "Machine vision"],
+          },
+          {
+            lead: "Let customers adjust laser power from the front end.",
+            detail: "Built testable abstractions over image processing and laser control, giving the client application a flexible API to work with.",
+            tags: [],
+          },
+          {
+            lead: "Automated secure releases.",
+            detail: "Designed, built and debugged CI/CD pipelines that automated encryption, signing and publishing.",
+            tags: ["Azure DevOps", "YAML", "NUKE", "CodeMeter"],
+          },
+        ],
+      },
+      {
+        label: "Supporting people",
+        points: [
+          {
+            lead: "Championed wellbeing as part of the Mental Health & Wellbeing team.",
+            detail: "Coordinated events to improve employee experience in a small company.",
+            tags: [],
+          },
+        ],
+      },
+    ],
+    also: "Day to day: developed, maintained and optimised production-grade .NET C# code alongside production and systems engineering teams, with a security-first mindset.",
+  },
+  {
+    role: "Graduate Engineer",
+    company: "Reaction Engines",
+    dates: "Oct 2023 – Oct 2024",
+    themes: [
+      {
+        label: "Building inclusive culture",
+        points: [
+          {
+            lead: "Founded a Gender Equity Network.",
+            detail: "Set up to foster a positive, inclusive culture and empower staff across the company.",
+            tags: [],
+          },
+        ],
+      },
+      {
+        label: "Finding better ways to work with automation",
+        points: [
+          {
+            lead: "Automated test campaign data capture, cutting manual effort by 93%.",
+            detail: "Built it in Python during a Systems Engineering placement, and led the push toward digital transformation within the company.",
+            tags: [],
+          },
+          {
+            lead: "Spotted an opportunity and pitched it.",
+            detail: "Inspired by the Digital Manufacturing Expo, I proposed a proof-of-concept IoT digitalisation tool, influencing the team's strategy in a fast-moving environment.",
+            tags: [],
+          },
+          {
+            lead: "Made CNC machines more energy efficient.",
+            detail: "Built a Python carbon-footprint tool that automated data collection and visualisation (using IoT principles and ETL methods) and identified 11% energy efficiency improvements.",
+            tags: [],
+          },
+          {
+            lead: "Removed redundant testing.",
+            detail: "Applied statistical process control (SPC) in Python to eliminate unnecessary tests, saving 25 hours a month and shortening lead times.",
+            tags: [],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    role: "MSc Computer Science Summer Project",
+    company: "IBM | UCL",
+    dates: "Jun – Sep 2023",
+    themes: [
+      {
+        label: "Making quantum computing accessible",
+        points: [
+          {
+            lead: "Built IBM Quantum Flatworld, an educational platform that teaches quantum computing through 3D games.",
+            detail: "Worked with IBM to create games using Qiskit and Unity, including The Bloch Sphere and The Quantum Computer, so learners from different backgrounds can build intuition visually.",
+            tags: [],
+          },
+          {
+            lead: "Designed it so other people can contribute.",
+            detail: "Created a framework for instructors and developers to upload their own Unity-based games, on a full-stack app (Vue.js, Node/Express.js, microservices).",
+            tags: [],
+          },
+          {
+            lead: "Explored hands-free interaction.",
+            detail: "Integrated UCL MotionInput to widen how people can engage, and proposed cloud deployment and UI improvements as next steps.",
+            tags: [],
+          },
+        ],
+      },
+    ],
+  },
+];
+---
+{experience.map((job) => (
+  <li class="scroll-reveal relative pb-12">
+    <span class="absolute -left-8 top-2 h-3 w-3 -translate-x-1/2 rounded-full bg-link md:-left-12"></span>
+
+    <p class="text-sm text-muted-foreground">{job.dates}</p>
+    <h3 class="font-display text-2xl">{job.role}</h3>
+    <p class="text-md text-muted-foreground">{job.company}</p>
+
+    <div class="mt-10 space-y-12">
+      {job.themes.map((theme) => (
+        <div>
+          <p class="font-display text-xs uppercase tracking-widest text-link">{theme.label}</p>
+
+          <ul class="mt-4 space-y-6">
+            {theme.points.map((p) => (
+              <li class="group/point relative pl-8 before:absolute before:left-0 before:top-[0.8em] before:h-px before:w-4 before:bg-link before:transition-all before:duration-300 group-hover:before:w-6">
+                <p class="font-display text-lg leading-snug">{p.lead}</p>
+                <p class="mt-1 max-w-prose text-muted-foreground">{p.detail}</p>
+                {p.tags && (
+                  <ul class="mt-3 flex flex-wrap gap-2" aria-label="Skills and tools">
+                    {p.tags.map((tag) => (
+                      <li>
+                        {/* make hover colour a bit transparent */}
+                        <Badge variant="outline" class="tag font-normal text-muted-foreground transition-colors duration-300 group-hover/point:border-link/50 group-hover/point:text-foreground">
+                          {tag}
+                        </Badge>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <p class="mt-6 mb-6 max-w-prose text-sm text-muted-foreground">{job.also}</p>
+  </li>
+))}
