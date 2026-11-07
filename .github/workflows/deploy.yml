@@ -22,6 +22,7 @@ jobs:
       - uses: withastro/action@v3
         with:
           path: ./green-group
+          package-manager: pnpm@latest
 
   deploy:
     needs: build
