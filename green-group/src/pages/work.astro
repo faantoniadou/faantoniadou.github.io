@@ -206,16 +206,18 @@ const education = [
 <Base title="Work | Faidra Antoniadou">
   <h1 class="reveal font-display text-5xl" style="--i:0">Work</h1>
 
-  <nav class="reveal mt-6 flex flex-wrap gap-6 text-muted-foreground" style="--i:1">
-    <!-- <a href="#case-studies" class="link-underline">Case studies</a> -->
-    <a href="#experience" class="link-underline">Experience</a>
-		<a href="#community" class="link-underline">Community</a>
-		<a href="#education" class="link-underline">Education</a>
-  </nav>
-	<!-- CV button component imported -->
-		<div class="reveal mt-6" style="--i:2">
+	<div class="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+		<nav class="reveal mt-6 flex flex-wrap gap-6 text-muted-foreground" style="--i:1">
+			<!-- <a href="#case-studies" class="link-underline">Case studies</a> -->
+			<a href="#experience" class="link-underline">Experience</a>
+			<a href="#community" class="link-underline">Community</a>
+			<a href="#education" class="link-underline">Education</a>
+		</nav>
+		<!-- CV button component imported -->
+		<div class="reveal mt-2" style="--i:2">
 			<CVButton />
 		</div>	
+	</div>
   <!-- <section id="case-studies" class="mt-10 scroll-mt-24"> -->
     <!-- <h2 class="font-display text-3xl">Case studies</h2> -->
     <!-- <ul class="mt-8 grid gap-10 md:grid-cols-2"> -->
