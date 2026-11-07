@@ -3,3 +3,9 @@
 
 export const SITE_TITLE = 'FA';
 export const SITE_DESCRIPTION = 'Welcome to my website!';
+
+export const SOCIALS = [
+  { href: "https://github.com/faantoniadou", label: "GitHub", icon: "simple-icons:github" },
+  { href: "https://www.linkedin.com/in/faidra-antoniadou/", label: "LinkedIn", icon: "simple-icons:linkedin" },
+  { href: "mailto:faantoniadou@gmail.com", label: "Email", icon: "lucide:mail" },
+];

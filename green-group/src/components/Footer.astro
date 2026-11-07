@@ -1,4 +1,6 @@
 ---
+import { SOCIALS } from '../consts';
+
 const today = new Date();
 const iconSize = 30;
 ---
@@ -6,7 +8,7 @@ const iconSize = 30;
 <footer class="flex mx-auto w-full max-w-5xl items-center justify-between border-t border-border/60 px-6 py-8 text-sm text-muted-foreground">
 	&copy; {today.getFullYear()} Faidra Antoniadou. All rights reserved.
 	<div class="social-links">
-		<a href="https://github.com/faantoniadou" target="_blank">
+		<a href={SOCIALS[0].href} target="_blank">
 			<span class="sr-only">Go to my GitHub page</span>
 			<svg viewBox="0 0 16 16" aria-hidden="true" width={iconSize} height={iconSize} astro-icon="social/github">
 				<path
@@ -17,7 +19,7 @@ const iconSize = 30;
 			</svg>
 		</a>
 		<!-- add a LinkedIn link -->
-		<a href="https://www.linkedin.com/in/faidra-antoniadou/" target="_blank">
+		<a href={SOCIALS[1].href} target="_blank">
 			<span class="sr-only">Go to my LinkedIn page</span>
 			<svg xmlns="http://www.w3.org/2000/svg" width={iconSize} height={iconSize} fill="currentColor" class="bi bi-linkedin" viewBox="0 0 16 16">
   			<path 

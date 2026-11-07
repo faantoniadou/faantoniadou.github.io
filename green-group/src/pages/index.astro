@@ -1,9 +1,10 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
 import Base from '../layouts/Base.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { Icon } from "astro-icon/components";
 
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { SOCIALS } from '../consts';
 import '../styles/global.css';
 
 const links = [
@@ -20,19 +21,36 @@ const links = [
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Base title="About | Faidra Antoniadou
-		">
-		<section class="flex min-h-[20vh] flex-col gap-7">
-			<h1 
-				class="reveal font-display text-[clamp(3rem,6vw,9rem)] leading-[0.95]"
-				style="--i:0"
-			>
-				Faidra Antoniadou
-			</h1>
-			<p class="reveal max-w-md text-lg text-muted-foreground" style="--i:1">
-      	One sentence about what you do and who it's for.
-    	</p>
-			</section>
+		<Base title="About | Faidra Antoniadou">
+		<section class="flex min-h-[20vh] flex-col gap-8 md:flex-row md:items-center md:gap-14">
+
+			<!-- Social icons: a column on the left (a row above the text on mobile) -->
+			<ul class="flex gap-5 md:flex-col">
+				{SOCIALS.map((s, i) => (
+					<li class="reveal" style={`--i:${i + 1}`}>
+						<a
+							href={s.href}
+							aria-label={s.label}
+							class="block text-muted-foreground transition-all duration-200 hover:-translate-y-0.5 hover:text-link"
+						>
+							<Icon name={s.icon} class="h-5 w-5" />
+						</a>
+					</li>
+				))}
+			</ul>
+
+			<div class="flex flex-col gap-4">
+				<h1 
+					class="reveal font-display text-[clamp(3rem,6vw,9rem)] leading-[0.95]"
+					style="--i:0"
+				>
+					Faidra Antoniadou
+				</h1>
+				<p class="reveal max-w-md text-lg text-muted-foreground" style="--i:1">
+					One sentence about what you do and who it's for.
+				</p>
+			</div>
+		</section>
 		</Base>
 	</body>
 </html>
