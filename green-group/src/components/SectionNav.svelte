@@ -52,13 +52,13 @@
     fallbackTint={0.3}
     blur={3}
     scale={30}
-    bevelDepth={100}
+    bevelDepth={20}
     class="shadow-[0_1px_9px_rgb(0_0_0/0.10),0_0_0_1px_rgb(0_0_0/0.04),inset_0_1px_0_rgb(255_255_255/0.3)]"
   >
     <div class="relative flex p-1">
       <span
         aria-hidden="true"
-        class="absolute top-1 bottom-1 left-0 rounded-full bg-foreground/[0.07] motion-reduce:transition-none"
+        class="absolute top-1 bottom-1 left-0 rounded-full bg-link/15 motion-reduce:transition-none"
         style="width:{pill.width}px; transform:translateX({pill.left}px); opacity:{pill.width ? 1 : 0}; transition: transform 0.4s cubic-bezier(0.3,1.25,0.4,1), width 0.4s cubic-bezier(0.3,1.25,0.4,1), opacity 0.2s;"
       ></span>
 
@@ -69,7 +69,7 @@
           aria-current={active === s.id ? "true" : undefined}
           class={cn(
             "relative z-10 rounded-full px-4 py-2 text-sm transition-colors duration-200",
-            active === s.id ? "text-foreground" : "text-muted-foreground"
+            active === s.id ? "text-foreground" : "text-foreground/70"
           )}
         >
           {s.label}
