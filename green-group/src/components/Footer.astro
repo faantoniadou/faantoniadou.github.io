@@ -7,7 +7,7 @@ const iconSize = 24;
 
 <footer class="flex mx-auto w-full max-w-5xl items-center justify-between border-t border-border/60 px-6 py-8 text-sm text-muted-foreground">
 	&copy; {today.getFullYear()} Faidra Antoniadou. All rights reserved.
-	<div class="social-links gap-80">
+	<div class="social-links">
 		<a href={SOCIALS[0].href} target="_blank">
 			<span class="sr-only mr-8">Go to my GitHub page</span>
 			<svg viewBox="0 0 16 16" aria-hidden="true" width={iconSize} height={iconSize} astro-icon="social/github">
@@ -37,7 +37,7 @@ const iconSize = 24;
 	.social-links {
 		display: flex;
 		justify-content: center;
-		gap: 1em;
+		gap: 2em;
 		margin-top: 1em;
 	}
 	.social-links a {
