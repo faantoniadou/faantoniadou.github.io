@@ -75,6 +75,7 @@
 
   h1, h2, h3, h4 {
     @apply font-display;
+    color: oklch(0.2042 0.031 177.79);
     font-weight: 400;
     letter-spacing: -0.02em;
     line-height: 1.15;
@@ -98,4 +99,20 @@
 .link-underline:focus-visible,
 .link-underline[aria-current="page"] {
   background-size: 100% 2px;       /* line fully drawn */
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: none; }
+}
+
+.reveal {
+  opacity: 0;
+  animation: rise 1.2s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+  animation-delay: calc(var(--i, 0) * 180ms);  /* stagger */
+}
+
+/* respect people who turn animations off */
+@media (prefers-reduced-motion: reduce) {
+  .reveal { animation: none; opacity: 1; }
 }

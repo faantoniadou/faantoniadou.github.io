@@ -5,6 +5,13 @@ import Base from '../layouts/Base.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 
 import '../styles/global.css';
+
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/about", label: "About" },
+  { href: "/writing", label: "Writing" },
+  { href: "/contact", label: "Say hello" },
+];
 ---
 
 <!doctype html>
@@ -13,10 +20,19 @@ import '../styles/global.css';
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
 	<body>
-		<Base title="About | Faidra Antoniado
+		<Base title="About | Faidra Antoniadou
 		">
-			<h1 class="text-5xl">About me</h1>
+		<section class="flex min-h-[20vh] flex-col gap-7">
+			<h1 
+				class="reveal font-display text-[clamp(3rem,6vw,9rem)] leading-[0.95]"
+				style="--i:0"
+			>
+				Faidra Antoniadou
+			</h1>
+			<p class="reveal max-w-md text-lg text-muted-foreground" style="--i:1">
+      	One sentence about what you do and who it's for.
+    	</p>
+			</section>
 		</Base>
-		<Footer />
 	</body>
 </html>
