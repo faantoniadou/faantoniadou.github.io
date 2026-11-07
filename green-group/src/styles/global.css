@@ -117,3 +117,13 @@
   .reveal { animation: none; opacity: 1; }
 }
 
+.link-underline:hover,
+.link-underline:focus-visible,
+.link-underline[aria-current="page"],
+.link-underline[aria-current="true"] {
+  background-size: 100% 2px;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
