@@ -124,6 +124,9 @@
   background-size: 100% 2px;
 }
 
+html {
+  scroll-padding-top: 3rem;
+}
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
