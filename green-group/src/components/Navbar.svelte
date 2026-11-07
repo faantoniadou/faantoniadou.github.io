@@ -7,10 +7,10 @@
   let { currentPath }: { currentPath: string } = $props();
 
   const links = [
-    { href: "/about", label: "About" },
-    { href: "/work", label: "Work" },
-    { href: "/writing", label: "Writing" },
-    { href: "/contact", label: "Contact" },
+    { href: "/work", label: "Professional" },
+    { href: "/visual", label: "Visual" },
+    { href: "/personal", label: "Personal" },
+    // { href: "/culture", label: "Cultural" },
   ];
 
   let open = $state(false);
