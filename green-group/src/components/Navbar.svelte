@@ -41,14 +41,24 @@
       >
         <Menu class="h-5 w-5" />
       </Sheet.Trigger>
-      <Sheet.Content side="right" class="w-64">
+    
+      <Sheet.Content
+        side="right"
+        class="bg-background p-8 data-[side=right]:w-full data-[side=right]:border-l-0 data-[side=right]:sm:max-w-sm"
+      >
         <Sheet.Title class="sr-only">Navigation</Sheet.Title>
-        <nav class="mt-10 flex flex-col gap-6 font-serif text-2xl">
-          {#each links as link}
+    
+        <nav class="mt-16 flex flex-col gap-6 font-display text-4xl">
+          {#each links as link, i}
             <a
               href={link.href}
               onclick={() => (open = false)}
-              class={isActive(link.href) ? "text-foreground" : "text-muted-foreground"}
+              aria-current={isActive(link.href) ? "page" : undefined}
+              class={cn(
+                "reveal link-underline w-fit",
+                isActive(link.href) ? "text-foreground" : "text-muted-foreground"
+              )}
+              style="--i:{i}"
             >
               {link.label}
             </a>
