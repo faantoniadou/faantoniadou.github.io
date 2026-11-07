@@ -4,44 +4,11 @@ import { getCollection } from "astro:content";
 
 // const projects = await getCollection("work");
 
-const highlights = [
-  {
-    stat: "Now",
-    label: "Leading discovery",
-    detail: "Leading discovery for an internal automation: running user interviews to understand the Compliance team's main pain points before deciding what to build.",
-    tags: ["User interviews", "Data analysis", "Synthesis"],
-  },
-  {
-    stat: "2×",
-    label: "frontend output",
-    detail: "Built two AI agent skills: one encoding Cisco's internal component library, one automatically checking rendered UI. IT leadership called it “setting a great example for the entire IT organisation.”",
-    tags: ["AI agents", "Playwright MCP", "Design systems"],
-  },
-  {
-    stat: "−92%",
-    label: "slow queries",
-    detail: "Cut slow database queries from 63K to 5K a week on the hybrid-work platform by diagnosing high-latency aggregations.",
-    tags: ["MongoDB", "Performance"],
-  },
-  {
-    stat: "−60%",
-    label: "worst-case load time",
-    detail: "From 6s to 2s, so the platform feels faster for the people using it.",
-    tags: ["Performance", "Full-stack"],
-  },
-  {
-    stat: "2",
-    label: "hiring cycles",
-    detail: "Supported early-careers hiring through CV screening and first-round interviews, recognised for sincerity and engagement.",
-    tags: ["Mentoring", "Hiring"],
-  },
-];
-
 const experience = [
   {
     role: "Software Engineer",
     company: "Cisco",
-    dates: "2025 – Present", // your real dates
+    dates: "Aug 2025 – Present", // your real dates
     themes: [
       {
         label: "Understanding people",
@@ -76,6 +43,131 @@ const experience = [
       },
     ],
   },
+	{
+		role: "Software Engineer",
+		company: "Opsydia",
+		dates: "Dec 2024 – Jul 2025",
+		themes: [
+			{
+				label: "Building reliable systems",
+				points: [
+					{
+						lead: "Made quality control on the production line far more reliable.",
+						detail: "Improved machine-vision accuracy from ~70% to ~99% by separating image preprocessing from text recognition (OCR) so each part could be tested and improved on its own, and by enhancing the image pipelines.",
+					},
+					{
+						lead: "Let customers adjust laser power from the front end.",
+						detail: "Built testable abstractions over image processing and laser control, giving the client application a flexible API to work with.",
+					},
+					{
+						lead: "Automated secure releases.",
+						detail: "Designed, built and debugged CI/CD pipelines in Azure DevOps (YAML and NUKE) that automated encryption, signing and publishing with CodeMeter and Wibu-Systems.",
+					},
+				],
+			},
+			{
+				label: "Supporting people",
+				points: [
+					{
+						lead: "Championed wellbeing as part of the Mental Health & Wellbeing team.",
+						detail: "Coordinated events to improve employee experience in a small company.",
+					},
+				],
+			},
+		],
+		also: "Day to day: developed, maintained and optimised production-grade .NET C# code alongside production and systems engineering teams, with a security-first mindset.",
+	},
+	{
+		role: "Graduate Engineer",
+		company: "Reaction Engines",
+		dates: "Oct 2023 – Oct 2024",
+		themes: [
+			{
+				label: "Building inclusive culture",
+				points: [
+					{
+						lead: "Founded a Gender Equity Network.",
+						detail: "Set up to foster a positive, inclusive culture and empower staff across the company.",
+					},
+				],
+			},
+			{
+				label: "Finding better ways to work with automation",
+				points: [
+					{
+						lead: "Automated test campaign data capture, cutting manual effort by 93%.",
+						detail: "Built it in Python during a Systems Engineering placement, and led the push toward digital transformation within the company.",
+					},
+					{
+						lead: "Spotted an opportunity and pitched it.",
+						detail: "Inspired by the Digital Manufacturing Expo, I proposed a proof-of-concept IoT digitalisation tool, influencing the team's strategy in a fast-moving environment.",
+					},
+					{
+						lead: "Made CNC machines more energy efficient.",
+						detail: "Built a Python carbon-footprint tool that automated data collection and visualisation (using IoT principles and ETL methods) and identified 11% energy efficiency improvements.",
+					},
+					{
+						lead: "Removed redundant testing.",
+						detail: "Applied statistical process control (SPC) in Python to eliminate unnecessary tests, saving 25 hours a month and shortening lead times.",
+					},
+				],
+			},
+		],
+	},
+	{
+		role: "MSc Computer Science Summer Project",
+		company: "IBM | UCL",
+		dates: "Jun – Sep 2023",
+		themes: [
+			{
+				label: "Making quantum computing accessible",
+				points: [
+					{
+						lead: "Built IBM Quantum Flatworld, an educational platform that teaches quantum computing through 3D games.",
+						detail: "Worked with IBM to create games using Qiskit and Unity, including The Bloch Sphere and The Quantum Computer, so learners from different backgrounds can build intuition visually.",
+					},
+					{
+						lead: "Designed it so other people can contribute.",
+						detail: "Created a framework for instructors and developers to upload their own Unity-based games, on a full-stack app (Vue.js, Node/Express.js, microservices).",
+					},
+					{
+						lead: "Explored hands-free interaction.",
+						detail: "Integrated UCL MotionInput to widen how people can engage, and proposed cloud deployment and UI improvements as next steps.",
+					},
+				],
+			},
+		],
+	},
+];
+
+const outreach = [
+	{
+		role: "Outreach Team Member, Feltham",
+		org: "Cisco",
+		dates: "Aug 2025 – Present",
+		points: [
+			"Speak on panels at universities, answering students' questions about life as a software engineer.",
+			"Ran a workshop for high school students on what software engineers actually do, to build their enthusiasm for technology.",
+			"Gave constructive feedback and career advice in two speed-interviewing sessions for high school students, helping them prepare for their first interviews.",
+		],
+	},
+	{
+		role: "Physics Outreach Team, Senior Member",
+		org: "University of Edinburgh",
+		dates: "Sep 2018 – May 2022",
+		points: [
+			"Mentored teams to design and deliver workshops in underprivileged schools, working with the Science and Technology Facilities Council.",
+			"Helped develop content for the Online Sutton Trust Summer School 2020 and produced an introduction video for its Physics course, later used by the School of Physics and Astronomy for promotion.",
+			"Attained the Edinburgh Award for self-development.",
+		],
+	},
+];
+
+const earlier = [
+	{ role: "Operations Intern", org: "Amazon", dates: "Jun – Aug 2021",
+		line: "Automated a manual process with a tool built in Excel (VBA, JavaScript), trialling it with users and iterating on their feedback until 80% found it beneficial." },
+	{ role: "Systems Engineering Intern", org: "Leonardo", dates: "May – Aug 2022",
+		line: "Turned stakeholder needs into a requirements document and built a MATLAB tool to analyse radar performance." },
 ];
 ---
 
@@ -109,7 +201,7 @@ const experience = [
 		<!-- PART A: timeline -->
 		<ol class="mt-10 border-l border-border pl-8 md:pl-12">
 			{experience.map((job) => (
-				<li class="scroll-reveal relative pb-16">
+				<li class="scroll-reveal relative pb-12">
 					<span class="absolute -left-8 top-2 h-3 w-3 -translate-x-1/2 rounded-full bg-link md:-left-12"></span>
 
 					<p class="text-sm text-muted-foreground">{job.dates}</p>
@@ -133,9 +225,51 @@ const experience = [
 						))}
 					</div>
 
-					<p class="mt-12 max-w-prose text-sm text-muted-foreground">{job.also}</p>
+					<p class="mt-6 mb-6 max-w-prose text-sm text-muted-foreground">{job.also}</p>
+				</li>
+			))}
+			<details class="mt-16">
+					<summary class="cursor-pointer font-display text-xl">Earlier experience</summary>
+					<ul class="mt-8 space-y-6">
+						{earlier.map((e) => (
+							<li class="grid gap-1 md:grid-cols-[10rem_1fr] md:gap-10">
+								<p class="text-sm text-muted-foreground">{e.dates}</p>
+								<div>
+									<p class="font-display text-lg">{e.role}, {e.org}</p>
+									<p class="text-muted-foreground">{e.line}</p>
+								</div>
+							</li>
+						))}
+					</ul>
+				</details>
+		</ol>
+	</section>
+	<section id="outreach" class="mt-24 scroll-mt-24">
+		<h2 class="font-display text-3xl">Outreach</h2>
+		<p class="mt-3 max-w-prose text-muted-foreground">
+			I've been teaching and mentoring young people since university.
+		</p>
+	
+		<ol class="mt-10 space-y-14">
+			{outreach.map((item) => (
+				<li class="scroll-reveal grid gap-2 md:grid-cols-[10rem_1fr] md:gap-10">
+					<p class="text-sm text-muted-foreground">{item.dates}</p>
+	
+					<div>
+						<h3 class="font-display text-2xl leading-snug">{item.role}</h3>
+						<p class="text-muted-foreground">{item.org}</p>
+	
+						<ul class="mt-4 space-y-3">
+							{item.points.map((point) => (
+								<li class="relative max-w-prose text-light pl-8 before:absolute before:left-0 before:top-[0.8em] before:h-px before:w-4 before:bg-link">
+									{point}
+								</li>
+							))}
+						</ul>
+					</div>
 				</li>
 			))}
 		</ol>
 	</section>
+	
 </Base>
