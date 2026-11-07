@@ -12,10 +12,10 @@
       line: "Automated a manual process with a tool built in Excel (VBA, JavaScript), trialling it with users and iterating on their feedback until 80% found it beneficial.",
     },
     {
-      role: "Systems Engineering Intern",
-      org: "Leonardo",
-      dates: "May – Aug 2022",
-      line: "Turned stakeholder needs into a requirements document and built a MATLAB tool to analyse radar performance.",
+      role: "Research Intern",
+      org: "University of Cyprus",
+      dates: "Jun – Dec 2020",
+      line: "Supervised by a professor and PhD student in the development of a research project as a Student-Led, Individually-Created Course.",
     },
   ];
 
