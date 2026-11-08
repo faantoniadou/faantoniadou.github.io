@@ -18,6 +18,8 @@ const [c1, c2] = blobs ?? [
 
 <a
   href={`/case-studies/${entry.id}`}
+  data-tile
+  data-manual={blobs ? "" : undefined}
   class="group block rounded-[2.5rem] outline-offset-8 focus-visible:outline-2 focus-visible:outline-link"
   style={`--c1:${c1}; --c2:${c2}`}
 >
@@ -31,6 +33,7 @@ const [c1, c2] = blobs ?? [
         <Image
           src={image}
           alt={alt}
+          data-cover
           class="scale-95 self-center size-full object-cover transition-transform duration-200 group-hover:scale-100 group-active:scale-100"
         />
       ) : (
@@ -61,7 +64,7 @@ const [c1, c2] = blobs ?? [
     opacity: 0;
     transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.9s ease;
   }
-  .blob-a { background: var(--c1); top: -4%; left: -5%; transform: translate(-30px, -80px) scale(0.95); }
+  .blob-a { background: var(--c1); top: -%; left: -5%; transform: translate(-30px, -80px) scale(0.95); }
   .blob-b { background: var(--c2); bottom: -8%; right: -10%; transform: translate(30px, -80px) scale(0.75); }
 
   /* settle into place once the tile has scrolled into view */
@@ -77,3 +80,94 @@ const [c1, c2] = blobs ?? [
     .blob { opacity: 0.85; transform: none; transition: none; }
   }
 </style>
+<script>
+  type Rgb = { r: number; g: number; b: number };
+
+  const toHsl = ({ r, g, b }: Rgb) => {
+    r /= 255; g /= 255; b /= 255;
+    const max = Math.max(r, g, b), min = Math.min(r, g, b);
+    const l = (max + min) / 2;
+    const d = max - min;
+    if (d === 0) return { h: 0, s: 0, l };
+    const s = d / (1 - Math.abs(2 * l - 1));
+    let h = max === r ? ((g - b) / d) % 6 : max === g ? (b - r) / d + 2 : (r - g) / d + 4;
+    return { h: (h * 60 + 360) % 360, s, l };
+  };
+
+  const hueGap = (a: number, b: number) => {
+    const d = Math.abs(a - b) % 360;
+    return d > 180 ? 360 - d : d;
+  };
+
+  const MIN_HUE_GAP = 50; // degrees: closer than this counts as "too similar"
+
+  // pick the two most vivid, clearly different colours from each cover
+  function pickColours(img: HTMLImageElement): [string, string] | null {
+    const size = 40;
+    const canvas = document.createElement("canvas");
+    canvas.width = canvas.height = size;
+    const ctx = canvas.getContext("2d", { willReadFrequently: true });
+    if (!ctx) return null;
+    ctx.drawImage(img, 0, 0, size, size);
+    const { data } = ctx.getImageData(0, 0, size, size);
+
+    // 12 hue buckets (30° each): total score, plus score-weighted rgb
+    const buckets = Array.from({ length: 12 }, () => ({ score: 0, r: 0, g: 0, b: 0 }));
+
+    for (let i = 0; i < data.length; i += 4) {
+      if (data[i + 3] < 128) continue;
+      const rgb = { r: data[i], g: data[i + 1], b: data[i + 2] };
+      const { h, s, l } = toHsl(rgb);
+      if (s < 0.3 || l < 0.18 || l > 0.9) continue; // skip greys, near-black and near-white
+
+      const score = s * (1 - Math.abs(l - 0.55) * 1.6); // vivid and mid-bright wins
+      if (score <= 0) continue;
+      const bk = buckets[Math.floor(h / 30) % 12];
+      bk.score += score;
+      bk.r += rgb.r * score; bk.g += rgb.g * score; bk.b += rgb.b * score;
+    }
+
+    const ranked = buckets
+      .filter((bk) => bk.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .map((bk) => ({ r: bk.r / bk.score, g: bk.g / bk.score, b: bk.b / bk.score }));
+    if (!ranked.length) return null;
+
+    const first = ranked[0];
+    const firstHsl = toHsl(first);
+
+    // best runner-up that is genuinely a different colour
+    const second = ranked.slice(1).find((c) => hueGap(toHsl(c).h, firstHsl.h) >= MIN_HUE_GAP);
+
+    const c1 = `rgb(${Math.round(first.r)} ${Math.round(first.g)} ${Math.round(first.b)})`;
+    if (second) {
+      return [c1, `rgb(${Math.round(second.r)} ${Math.round(second.g)} ${Math.round(second.b)})`];
+    }
+
+    // too close (or only one colour family): generate a partner colour instead
+    const h2 = (firstHsl.h + 150) % 360;
+    const s2 = Math.min(Math.max(firstHsl.s, 0.6), 0.9);
+    const l2 = Math.min(Math.max(firstHsl.l, 0.62), 0.78);
+    return [c1, `hsl(${Math.round(h2)} ${Math.round(s2 * 100)}% ${Math.round(l2 * 100)}%)`];
+  }
+
+  document.querySelectorAll<HTMLAnchorElement>("a[data-tile]:not([data-manual])").forEach((tile) => {
+    const img = tile.querySelector<HTMLImageElement>("img[data-cover]");
+    if (!img) return;
+
+    const apply = () => {
+      try {
+        const colours = pickColours(img);
+        if (colours) {
+          tile.style.setProperty("--c1", colours[0]);
+          tile.style.setProperty("--c2", colours[1]);
+        }
+      } catch {
+        /* keep the fallback colours */
+      }
+    };
+
+    if (img.complete && img.naturalWidth) apply();
+    else img.addEventListener("load", apply, { once: true });
+  });
+</script>
