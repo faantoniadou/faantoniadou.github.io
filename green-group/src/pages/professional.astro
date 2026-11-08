@@ -10,14 +10,14 @@ import { getCollection } from "astro:content";
 ---
 
 <Base title="Professional | Faidra Antoniadou">
-	<header class="flex flex-col gap-5">
+	<header class="flex ml-3 flex-col gap-5">
 		<h1 class="reveal font-display text-5xl mb-12" style="--i:0">Professional</h1>
 		<div class="reveal" style="--i:2">
 			<CVButton class="justify-center" />
 		</div>
 	</header>
 
-	<div class="sticky top-20 z-40 mt-10 flex">
+	<div class="sticky ml-2 top-20 z-40 mt-10 flex">
 		<SectionNav
 			client:load
 			sections={[

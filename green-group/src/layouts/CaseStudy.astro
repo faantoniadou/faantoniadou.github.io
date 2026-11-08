@@ -7,7 +7,7 @@ interface Props {
   entry: CollectionEntry<"case-studies">;
 }
 const { entry } = Astro.props;
-const { title, blurb, role, org, year, cover, coverAlt, tags, draft, accent } = entry.data;
+const { title, blurb, role, org, year, thumbnail, thumbnailAlt, showCover, cover, coverAlt, coverWidth, tags, draft, accent } = entry.data;
 ---
 
 <Base title={`${title} | Faidra Antoniadou`} description={blurb}>
@@ -30,7 +30,7 @@ const { title, blurb, role, org, year, cover, coverAlt, tags, draft, accent } = 
       </dl>
     </header>
 
-    <Image src={cover} alt={coverAlt} class="my-12 w-full" />
+    { cover && coverAlt && <Image src={cover} alt={coverAlt} class="my-12 w-full" />}
 
     <div class="essay prose prose-lg max-w-none prose-headings:font-display prose-headings:font-normal prose-headings:text-foreground prose-p:text-foreground/85 prose-strong:text-foreground prose-a:text-link">
       <slot />

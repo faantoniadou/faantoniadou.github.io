@@ -11,8 +11,12 @@ const caseStudies = defineCollection({
 			role: z.string().optional(),
 			org: z.string().optional(),
 			year: z.number(),
-			cover: image(),                  // optimised by Astro
-			coverAlt: z.string().default(""),
+			thumbnail: image().optional(),
+			thumbnailAlt: z.string().optional(),
+			cover: image().optional(),                  // optimised by Astro
+			coverAlt: z.string().optional(),
+			coverWidth: z.number().optional(),  // used for social sharing
+			showCover: z.boolean().default(true), // false = keep it for cards, hide the hero
 			tags: z.array(z.string()).default([]),
 			accent: z.string().optional(),   // per-study accent colour
 			order: z.number().default(99),   // controls order on the home page

@@ -2,12 +2,51 @@
 import WorkExperience from "./WorkExperience.astro";
 import EarlyExperience from "./EarlyExperience.svelte";
 ---
-<section id="experience" class="mt-10 scroll-mt-24">
+
+<section id="experience" class="mt-10">
   <h2 class="font-display text-3xl">Experience</h2>
 
-  <!-- PART A: timeline -->
-  <ol class="mt-10 border-l border-border pl-8 md:pl-12">
+  <ol data-timeline class="mt-10 border-l border-border pl-8 md:pl-12">
     <WorkExperience />
-    <EarlyExperience client:visible />
   </ol>
+
+  <div class="mt-4">
+    <EarlyExperience client:visible />
+  </div>
 </section>
+
+<script>
+  const tl = document.querySelector<HTMLElement>("[data-timeline]");
+
+  if (tl && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const items = Array.from(tl.querySelectorAll<HTMLElement>(":scope > li"));
+    let ticking = false;
+
+    const update = () => {
+      ticking = false;
+      const focus = window.innerHeight * 0.5; // the middle of the screen
+      const rect = tl.getBoundingClientRect();
+      const y = Math.min(Math.max(focus - rect.top, 0), rect.height);
+      tl.style.setProperty("--bead-y", `${y}px`);
+
+      items.forEach((li) => {
+        const dot = li.querySelector<HTMLElement>("[data-dot]");
+        if (!dot) return;
+        const r = dot.getBoundingClientRect();
+        const distance = Math.abs(r.top + r.height / 2 - focus);
+        li.style.setProperty("--near", String(Math.max(0, 1 - distance / 140)));
+      });
+    };
+
+    const schedule = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+
+    addEventListener("scroll", schedule, { passive: true });
+    addEventListener("resize", schedule);
+    update();
+  }
+</script>
