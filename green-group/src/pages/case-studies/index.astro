@@ -1,0 +1,46 @@
+---
+import { getCollection } from "astro:content";
+
+import Base from "../../layouts/Base.astro";
+import CaseStudyTile from "../../components/CaseStudyTile.astro";
+
+const studies = (
+  await getCollection("case-studies", ({ data }) => (import.meta.env.PROD ? !data.draft : true))
+).sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Case studies | Faidra Antoniadou" description="Case studies and essays on user-centred, inclusive design and engineering.">
+  <header class="max-w-2xl">
+    <h1 class="reveal font-display text-5xl" style="--i:0">Case studies</h1>
+    <p class="reveal mt-4 text-lg text-muted-foreground" style="--i:1">
+      Projects and essays on the things I care about: people, design, and building things that include everyone.
+    </p>
+  </header>
+
+  {studies.length === 0 ? (
+    <p class="mt-16 text-muted-foreground">Case studies are on their way.</p>
+  ) : (
+    <ul class="mt-16 grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
+      {studies.map((entry) => (
+        <li data-reveal>
+          <CaseStudyTile entry={entry} />
+        </li>
+      ))}
+    </ul>
+  )}
+</Base>
+
+<script>
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add("is-visible");
+          io.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.25 }
+  );
+  document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+</script>
