@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import Base from "./Base.astro";
-
+import { Icon } from "astro-icon/components";
 interface Props {
   entry: CollectionEntry<"case-studies">;
 }
@@ -12,10 +12,15 @@ const { title, blurb, role, org, year, cover, coverAlt, tags, draft, accent } = 
 
 <Base title={`${title} | Faidra Antoniadou`} description={blurb}>
   <article style={accent ? `--link:${accent}` : undefined}>
-    <a href="/#selected-work" class="link-underline text-sm text-muted-foreground">← All projects</a>
+    <a href="/#selected-work" class="link text-sm text-muted-foreground hover:text-link"> 
+      <div class="inline-flex items-center gap-1">
+        <Icon name="lucide:arrow-left" />
+        All projects
+      </div>
+    </a>
 
     <header class="mt-10 max-w-3xl">
-      <h1 class="font-display text-[clamp(2.5rem,6vw,4.5rem)] leading-[0.95]">{title}</h1>
+      <h3 class="font-display text-4xl leading-[0.95]">{title}</h3>
       <p class="mt-4 text-xl text-muted-foreground">{blurb}</p>
 
       <dl class="mt-8 flex flex-wrap gap-x-10 gap-y-3 text-sm">
