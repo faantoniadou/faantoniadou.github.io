@@ -1,0 +1,12 @@
+---
+interface Props {
+  caption?: string;
+  wide?: boolean;
+}
+const { caption, wide = false } = Astro.props;
+---
+
+<figure class:list={["not-prose my-10", wide && "wide"]}>
+  <slot />
+  {caption && <figcaption class="mt-3 text-sm text-muted-foreground">{caption}</figcaption>}
+</figure>

@@ -7,8 +7,8 @@ const caseStudies = defineCollection({
 	schema: ({ image }) =>
 		z.object({
 			title: z.string(),
-			blurb: z.string(),               // one line, shown on cards
-			role: z.string(),
+			blurb: z.string().optional(),               // one line, shown on cards
+			role: z.string().optional(),
 			org: z.string().optional(),
 			year: z.number(),
 			cover: image(),                  // optimised by Astro

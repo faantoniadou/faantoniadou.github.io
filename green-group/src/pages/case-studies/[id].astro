@@ -1,0 +1,27 @@
+---
+import { getCollection, render } from "astro:content";
+import CaseStudy from "../../layouts/CaseStudy.astro";
+
+export async function getStaticPaths() {
+  const studies = await getCollection("case-studies", ({ data }) =>
+    import.meta.env.PROD ? !data.draft : true
+  );
+  return studies.map((entry) => ({ params: { id: entry.id } }));
+}
+
+const { id } = Astro.params;
+
+const studies = await getCollection("case-studies", ({ data }) =>
+  import.meta.env.PROD ? !data.draft : true
+);
+console.log("case study ids:", studies.map((s) => s.id), "| url id:", id);
+
+const entry = studies.find((e) => e.id === id);
+if (!entry) return Astro.redirect("/404");
+
+const { Content } = await render(entry);
+---
+
+<CaseStudy entry={entry}>
+  <Content />
+</CaseStudy>
