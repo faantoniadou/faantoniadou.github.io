@@ -21,6 +21,7 @@ const caseStudies = defineCollection({
 			accent: z.string().optional(),   // per-study accent colour
 			order: z.number().default(99),   // controls order on the home page
 			draft: z.boolean().default(false),
+			blobs: z.array(z.string()).length(2).optional(), // two colours for the glow behind the thumbnail
 		}),
 });
 
