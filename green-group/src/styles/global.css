@@ -132,3 +132,35 @@ html {
 @media (prefers-reduced-motion: no-preference) {
   html { scroll-behavior: smooth; }
 }
+
+/* the bump: --near goes 0 (far) to 1 (bead is on the dot), set by the script */
+[data-timeline] [data-dot] {
+  scale: calc(1 + var(--near, 0) * 0.9);
+  box-shadow: 0 0 0 calc(var(--near, 0) * 7px) color-mix(in oklab, var(--link) 22%, transparent);
+}
+
+/* ---------- Timeline: bead, trail and dot bump ---------- */
+[data-timeline] {
+  position: relative;
+  --start-y: 14px;
+  --bead-y: 14px;
+  --trail-h: 0px;
+}
+
+/* the line itself lights up: colour builds from the first dot to the scroll position, then fades out just below it */
+[data-timeline]::before {
+  content: "";
+  position: absolute;
+  left: -1.3px;                 /* sits exactly on the 1px border */
+  top: var(--start-y);
+  width: 1px;
+  height: calc(var(--trail-h) + 100px);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--link) var(--trail-h),
+    transparent calc(var(--trail-h) + 100px)
+  );
+  pointer-events: none;
+  max-height: calc(100% - var(--start-y));
+}

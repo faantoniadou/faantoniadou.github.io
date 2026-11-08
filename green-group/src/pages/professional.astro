@@ -47,3 +47,61 @@ import { getCollection } from "astro:content";
 	<Community />
 	<Education />
 </Base>
+<script>
+	const tl = document.querySelector<HTMLElement>("[data-timeline]");
+
+	if (tl && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+		const items = Array.from(tl.querySelectorAll<HTMLElement>(":scope > li"));
+		const dots = Array.from(tl.querySelectorAll<HTMLElement>("[data-dot]"));
+		let ticking = false;
+		let lastY = scrollY;
+		let settle: number;
+
+		// vertical centre of an element, measured from the top of the timeline
+		const centreY = (el: HTMLElement, top: number) => {
+			const r = el.getBoundingClientRect();
+			return r.top + r.height / 2 - top;
+		};
+
+		const update = () => {
+			const speed = Math.min(Math.abs(scrollY - lastY) / 60, 1);
+			lastY = scrollY;
+			tl.style.setProperty("--stretch", String(speed * 0.6));
+			clearTimeout(settle);
+			settle = window.setTimeout(() => tl.style.setProperty("--stretch", "0"), 120);
+
+			ticking = false;
+			if (!dots.length) return;
+
+			const focus = window.innerHeight * 0.5; // the middle of the screen
+			const top = tl.getBoundingClientRect().top;
+
+			const first = centreY(dots[0], top);
+			const last = tl.getBoundingClientRect().height; // the very end of the line
+			const y = Math.min(Math.max(focus - top, first), last);
+
+			tl.style.setProperty("--start-y", `${first}px`);
+			tl.style.setProperty("--bead-y", `${y}px`);
+			tl.style.setProperty("--trail-h", `${y - first}px`);
+
+			items.forEach((li) => {
+				const dot = li.querySelector<HTMLElement>("[data-dot]");
+				if (!dot) return;
+				const distance = Math.abs(dot.getBoundingClientRect().top + dot.offsetHeight / 2 - focus);
+				li.style.setProperty("--near", String(Math.max(0, 1 - distance / 140)));
+			});
+		};
+
+		const schedule = () => {
+			if (!ticking) {
+				ticking = true;
+				requestAnimationFrame(update);
+			}
+		};
+
+		addEventListener("scroll", schedule, { passive: true });
+		addEventListener("resize", schedule);
+		document.fonts?.ready.then(schedule); // heights shift once fonts load
+		update();
+	}
+</script>
