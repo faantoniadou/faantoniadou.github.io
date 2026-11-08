@@ -1,0 +1,28 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  wide?: boolean;   // breaks out of the narrow text column
+  split?: boolean;  // heading on the left, text on the right (desktop)
+}
+const { eyebrow, title, wide = false, split = false } = Astro.props;
+---
+
+<section
+  class:list={[
+    "my-16",
+    wide && "wide",
+    split && "md:grid md:grid-cols-[1fr_2fr] md:gap-12",
+  ]}
+>
+  <header class="not-prose mb-6 md:mb-0">
+    {eyebrow && (
+      <p class="font-display text-xs uppercase tracking-[0.2em] text-link">{eyebrow}</p>
+    )}
+    <h2 class="mt-2 font-display text-3xl leading-tight sm:text-4xl">{title}</h2>
+  </header>
+
+  <div>
+    <slot />
+  </div>
+</section>
