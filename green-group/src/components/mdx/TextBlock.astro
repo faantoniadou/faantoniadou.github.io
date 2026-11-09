@@ -2,41 +2,48 @@
 interface Props {
   eyebrow?: string;
   title?: string;
-  wide?: boolean;
   flip?: boolean; // put the image on the left instead of the right
 }
-const { eyebrow, title, wide = false, flip = false } = Astro.props;
+const { eyebrow, title, flip = false } = Astro.props;
 const hasImage = Astro.slots.has("image");
 ---
 
-<section
-  class:list={[
-    "my-2",
-    (wide || hasImage) && "wide",
-    hasImage && "md:grid md:grid-cols-2 md:items-center md:gap-12",
-  ]}
->
-  <div class:list={[hasImage && flip && "md:order-2"]}>
-    {(eyebrow || title) && (
-      <header class="not-prose mb-6 mt-2">
-        {eyebrow && (
-          <p class="font-display text-xs uppercase tracking-[0.2em] text-link">{eyebrow}</p>
-        )}
-        {title && <h2 class="mt-2 font-display text-3xl leading-tight">{title}</h2>}
-      </header>
+<section class="wide @container my-2">
+  <div
+    class:list={[
+      hasImage && "@3xl:grid @3xl:grid-cols-[3fr_2fr] @3xl:items-start @3xl:gap-12",
+    ]}
+  >
+    <div class:list={[hasImage && flip && "@3xl:order-2"]}>
+      {(eyebrow || title) && (
+        <header class="not-prose mb-6 mt-2">
+          {eyebrow && (
+            <p class="font-display text-xs uppercase tracking-[0.2em] text-link">{eyebrow}</p>
+          )}
+          {title && <h2 class="mt-2 font-display text-3xl leading-tight">{title}</h2>}
+        </header>
+      )}
+
+      <div
+        class="max-w-[65ch] text-base font-light leading-relaxed text-foreground/90
+               [&_p]:mb-5 [&_p:last-child]:mb-0"
+      >
+        <slot />
+      </div>
+    </div>
+
+    {hasImage && (
+      <div
+        class:list={[
+          "mt-6 [&_p]:m-0 [&_img]:m-0 [&_img]:block",
+          "[&_img]:h-auto [&_img]:w-auto [&_img]:max-w-full [&_img]:max-h-[70vh]",
+          "[&_img]:mx-auto @3xl:[&_img]:mx-0",
+          "@3xl:sticky @3xl:top-24 @3xl:mt-2",
+          flip && "@3xl:order-1",
+        ]}
+      >
+        <slot name="image" />
+      </div>
     )}
-
-    <div
-      class="text-base font-light leading-relaxed text-foreground/90
-             [&_p]:mb-5 [&_p:last-child]:mb-0"
-    >
-      <slot />
-    </div>
   </div>
-
-  {hasImage && (
-    <div class:list={["mt-2 [&_p]:m-0 [&_img]:m-0 [&_img]:block [&_img]:h-auto [&_img]:w-full", flip && "md:order-1"]}>
-      <slot name="image" />
-    </div>
-  )}
 </section>
