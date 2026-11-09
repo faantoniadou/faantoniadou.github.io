@@ -11,14 +11,14 @@ const hasImage = Astro.slots.has("image");
 
 <section
   class:list={[
-    "my-5",
+    "my-2",
     (wide || hasImage) && "wide",
     hasImage && "md:grid md:grid-cols-2 md:items-center md:gap-12",
   ]}
 >
   <div class:list={[hasImage && flip && "md:order-2"]}>
     {(eyebrow || title) && (
-      <header class="not-prose mb-6">
+      <header class="not-prose mb-6 mt-2">
         {eyebrow && (
           <p class="font-display text-xs uppercase tracking-[0.2em] text-link">{eyebrow}</p>
         )}
@@ -35,7 +35,7 @@ const hasImage = Astro.slots.has("image");
   </div>
 
   {hasImage && (
-    <div class:list={["mt-8 md:mt-0", flip && "md:order-1"]}>
+    <div class:list={["mt-2 [&_p]:m-0 [&_img]:m-0 [&_img]:block [&_img]:h-auto [&_img]:w-full", flip && "md:order-1"]}>
       <slot name="image" />
     </div>
   )}
