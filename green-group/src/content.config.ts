@@ -16,6 +16,7 @@ const caseStudies = defineCollection({
 			cover: image().optional(),                  // optimised by Astro
 			coverAlt: z.string().optional(),
 			coverWidth: z.number().optional(),  // used for social sharing
+			coverVisible: z.boolean().default(true).optional(),
 			showCover: z.boolean().default(true), // false = keep it for cards, hide the hero
 			tags: z.array(z.string()).default([]),
 			accent: z.string().optional(),   // per-study accent colour
