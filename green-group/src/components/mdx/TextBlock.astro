@@ -11,7 +11,7 @@ const hasImage = Astro.slots.has("image");
 
 <section
   class:list={[
-    "my-1",
+    "my-5",
     (wide || hasImage) && "wide",
     hasImage && "md:grid md:grid-cols-2 md:items-center md:gap-12",
   ]}
