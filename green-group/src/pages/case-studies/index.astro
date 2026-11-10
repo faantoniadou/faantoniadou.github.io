@@ -3,6 +3,7 @@ import { getCollection } from "astro:content";
 
 import Base from "../../layouts/Base.astro";
 import CaseStudyTile from "../../components/CaseStudyTile.astro";
+import { Icon } from "astro-icon/components";
 
 const studies = (
   await getCollection("case-studies", ({ data }) => (import.meta.env.PROD ? !data.draft : true))
@@ -10,6 +11,13 @@ const studies = (
 ---
 
 <Base title="Case studies | Faidra Antoniadou" description="Case studies and essays on user-centred, inclusive design and engineering.">
+  <a href="/" class="link text-sm text-muted-foreground hover:text-link"> 
+      <div class="inline-flex items-center gap-1 mb-6">
+        <Icon name="lucide:arrow-left" />
+        Home
+      </div>
+    </a>
+
   <header class="max-w-2xl">
     <h1 class="reveal font-display text-5xl" style="--i:0">Case studies</h1>
     <p class="reveal mt-4 text-lg text-muted-foreground" style="--i:1">
