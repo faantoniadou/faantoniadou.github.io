@@ -20,9 +20,9 @@ const studies = (
 
   <header class="max-w-2xl">
     <h1 class="reveal font-display text-5xl" style="--i:0">Case studies</h1>
-    <p class="reveal mt-4 text-lg text-muted-foreground" style="--i:1">
-      Ideas and thoughs I have on design and other topics.
-    </p>
+    <!-- <p class="reveal mt-4 text-md text-muted-foreground" style="--i:1"> -->
+      <!-- Ideas and thoughs I have on design and other topics. -->
+    <!-- </p> -->
   </header>
 
   {studies.length === 0 ? (
@@ -30,7 +30,7 @@ const studies = (
   ) : (
     <ul class="mt-16 grid gap-x-10 gap-y-16 sm:grid-cols-2 lg:grid-cols-3">
       {studies.map((entry) => (
-        <li data-reveal>
+        <li data-reveal class="w-full max-w-48">
           <CaseStudyTile entry={entry} />
         </li>
       ))}
