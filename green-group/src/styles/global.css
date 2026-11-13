@@ -91,16 +91,16 @@
   background-image: linear-gradient(currentColor, currentColor);
   background-repeat: no-repeat;
   background-position: 0 100%;     /* anchored bottom-left */
-  background-size: 0% 2px;         /* line hidden at rest */
+  background-size: 0% 1px;         /* line hidden at rest */
   padding-top: 10px;
   transition: background-size 0.3s ease;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .link-underline:hover,
 .link-underline:focus-visible,
 .link-underline[aria-current="page"] {
-  background-size: 100% 2px;       /* line fully drawn */
+  background-size: 100% 1px;       /* line fully drawn */
 }
 
 @keyframes rise {
@@ -123,7 +123,7 @@
 .link-underline:focus-visible,
 .link-underline[aria-current="page"],
 .link-underline[aria-current="true"] {
-  background-size: 100% 2px;
+  background-size: 100% 1px;
 }
 
 html {
